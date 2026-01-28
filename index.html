@@ -436,6 +436,29 @@
             font-size: 0.9rem;
         }
 
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-links img {
+            width: 32px;
+            height: 32px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -607,6 +630,17 @@
         <div class="footer-content">
             <div class="footer-copyright">
                 © 2026 Accenta. All rights reserved.
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/accentaio/" target="_blank" rel="noopener noreferrer">
+                    <img src="insta_green.png" alt="Instagram">
+                </a>
+                <a href="https://www.tiktok.com/@accentaio" target="_blank" rel="noopener noreferrer">
+                    <img src="tiktok_green.png" alt="TikTok">
+                </a>
+                <a href="https://www.youtube.com/@accentaio" target="_blank" rel="noopener noreferrer">
+                    <img src="youtube_green.png" alt="YouTube">
+                </a>
             </div>
             <div class="footer-links">
                 <a href="terms.html">Terms & Conditions</a>
