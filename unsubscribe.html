@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe - Accenta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            color: #1a202c;
+            margin-bottom: 16px;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-confirm:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-cancel {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-cancel:hover {
+            background: #f7fafc;
+        }
+        
+        .message {
+            margin-top: 24px;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Accenta</div>
+        
+        <div id="confirmSection">
+            <h1>Unsubscribe from Emails?</h1>
+            <p>We're sorry to see you go! If you unsubscribe, you won't receive any more emails from Accenta, including important updates and special offers.</p>
+            
+            <div class="buttons">
+                <button class="btn-confirm" id="confirmBtn">Yes, Unsubscribe</button>
+                <button class="btn-cancel" id="cancelBtn">No, Keep Me Subscribed</button>
+            </div>
+        </div>
+        
+        <div id="successSection" class="hidden">
+            <h1>✓ Unsubscribed Successfully</h1>
+            <p>You have been unsubscribed from all Accenta emails. You won't receive any more messages from us.</p>
+            <p style="margin-top: 16px; font-size: 14px;">Changed your mind? Contact us at <a href="mailto:info@accenta.io" style="color: #667eea;">info@accenta.io</a></p>
+        </div>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Get email from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        
+        const confirmBtn = document.getElementById('confirmBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmSection = document.getElementById('confirmSection');
+        const successSection = document.getElementById('successSection');
+        const messageDiv = document.getElementById('message');
+        
+        // Firebase Cloud Function URL - UPDATE THIS WITH YOUR ACTUAL URL
+        const UNSUBSCRIBE_URL = 'https://us-central1-accenta-7d9c6.cloudfunctions.net/unsubscribe';
+        
+        if (!email) {
+            showMessage('Invalid unsubscribe link. Email address is missing.', 'error');
+            confirmBtn.disabled = true;
+        }
+        
+        confirmBtn.addEventListener('click', async () => {
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = '<span class="spinner"></span> Unsubscribing...';
+            
+            try {
+                const response = await fetch(`${UNSUBSCRIBE_URL}?email=${encodeURIComponent(email)}`, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    confirmSection.classList.add('hidden');
+                    successSection.classList.remove('hidden');
+                } else {
+                    const errorText = await response.text();
+                    showMessage(`Error: ${errorText}`, 'error');
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = 'Yes, Unsubscribe';
+                }
+            } catch (error) {
+                showMessage('An error occurred. Please try again later.', 'error');
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Yes, Unsubscribe';
+            }
+        });
+        
+        cancelBtn.addEventListener('click', () => {
+            window.location.href = 'https://accenta.io';
+        });
+        
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+        }
+    </script>
+</body>
+</html>
