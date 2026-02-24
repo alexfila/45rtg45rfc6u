@@ -13,7 +13,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgb(51, 204, 191) 0%, rgb(26, 140, 128) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -32,13 +32,26 @@
         }
         
         .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        
+        .logo span {
             font-size: 32px;
             font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgb(51, 204, 191) 0%, rgb(38, 166, 153) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 24px;
         }
         
         h1 {
@@ -72,14 +85,14 @@
         }
         
         .btn-confirm {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgb(51, 204, 191) 0%, rgb(38, 166, 153) 100%);
             color: white;
             border: none;
         }
         
         .btn-confirm:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(51, 204, 191, 0.4);
         }
         
         .btn-confirm:disabled {
@@ -90,8 +103,8 @@
         
         .btn-cancel {
             background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            color: rgb(26, 140, 128);
+            border: 2px solid rgb(26, 140, 128);
         }
         
         .btn-cancel:hover {
@@ -119,7 +132,7 @@
         
         .spinner {
             border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
+            border-top: 3px solid rgb(51, 204, 191);
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -140,7 +153,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">Accenta</div>
+        <div class="logo">
+            <img src="websiteLogo.png" alt="Accenta Logo" class="logo-icon">
+            <span>Accenta</span>
+        </div>
         
         <div id="confirmSection">
             <h1>Unsubscribe from Emails?</h1>
@@ -155,7 +171,7 @@
         <div id="successSection" class="hidden">
             <h1>✓ Unsubscribed Successfully</h1>
             <p>You have been unsubscribed from all Accenta emails. You won't receive any more messages from us.</p>
-            <p style="margin-top: 16px; font-size: 14px;">Changed your mind? Contact us at <a href="mailto:info@accenta.io" style="color: #667eea;">info@accenta.io</a></p>
+            <p style="margin-top: 16px; font-size: 14px;">Changed your mind? Contact us at <a href="mailto:info@accenta.io" style="color: rgb(26, 140, 128);">info@accenta.io</a></p>
         </div>
         
         <div id="message"></div>
