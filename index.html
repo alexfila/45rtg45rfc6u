@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accenta – Discover Your English Accent</title>
-    <meta name="description" content="Instantly identify one of 16 English accents and receive personalized AI-powered coaching. Download Accenta free on iOS.">
+    <title>Accenta – Speak Like a Native</title>
+    <meta name="description" content="AI-powered accent coaching for American, British & Australian English. Identify your accent, train with AI coaches, and speak like a native. Free on iOS.">
 
-    <!-- Open Graph / Social sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://accenta.io/">
-    <meta property="og:title" content="Accenta – Discover Your English Accent">
-    <meta property="og:description" content="Instantly identify one of 16 English accents and receive personalized AI-powered coaching. Download Accenta free on iOS.">
+    <meta property="og:title" content="Accenta – Speak Like a Native">
+    <meta property="og:description" content="AI-powered accent coaching. Identify your accent, train with AI coaches, and speak like a native. Free on iOS.">
     <meta property="og:image" content="https://accenta.io/websiteLogo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Accenta – Discover Your English Accent">
-    <meta name="twitter:description" content="Instantly identify one of 16 English accents and receive personalized AI-powered coaching.">
+    <meta name="twitter:title" content="Accenta – Speak Like a Native">
+    <meta name="twitter:description" content="AI-powered accent coaching. Free on iOS.">
     <meta name="twitter:image" content="https://accenta.io/websiteLogo.png">
 
     <link rel="icon" type="image/png" sizes="32x32" href="websitefavicon.png">
@@ -22,31 +21,27 @@
     <link rel="apple-touch-icon" href="websiteLogo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --color-one: rgb(51, 204, 191);
-            --color-two: rgb(38, 166, 153);
-            --color-three: rgb(26, 140, 128);
-            --color-four: rgb(20, 115, 107);
-            --bg-light: rgb(230, 244, 241);
-            --bg-white: #FFFFFF;
-            --text-dark: #0F2B27;
-            --text-muted: #4A7C72;
-            --gradient-1: linear-gradient(135deg, var(--color-one) 0%, var(--color-two) 100%);
-            --gradient-2: linear-gradient(135deg, var(--color-two) 0%, var(--color-three) 100%);
-            --gradient-3: linear-gradient(135deg, var(--color-three) 0%, var(--color-four) 100%);
+            --teal-1: #33CCBF;
+            --teal-2: #26A699;
+            --teal-3: #1A8C80;
+            --teal-4: #14736B;
+            --teal-5: #0d5c55;
+            --bg-light: #eef8f7;
+            --bg-white: #ffffff;
+            --text-dark: #0a1f1d;
+            --text-body: #2d5c57;
+            --text-muted: #4d8079;
+            --border: rgba(20, 115, 107, 0.14);
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.5);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -54,749 +49,907 @@
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated background */
-        .background-animation {
+        /* ─── Animated background ─── */
+        .bg-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             overflow: hidden;
         }
-
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 20s infinite ease-in-out;
+            filter: blur(90px);
+            opacity: 0.22;
+            animation: drift 24s infinite ease-in-out;
         }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--color-one);
-            top: -200px;
-            left: -200px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: var(--color-three);
-            bottom: -150px;
-            right: -150px;
-            animation-delay: 5s;
-        }
-
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: var(--color-two);
-            top: 50%;
-            right: 10%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
+        .orb-a { width: 600px; height: 600px; background: var(--teal-1); top: -200px; left: -150px; animation-delay: 0s; }
+        .orb-b { width: 500px; height: 500px; background: var(--teal-3); bottom: -200px; right: -100px; animation-delay: 7s; }
+        .orb-c { width: 380px; height: 380px; background: var(--teal-2); top: 45%; right: 8%; animation-delay: 14s; }
+        @keyframes drift {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -50px) scale(1.1); }
-            50% { transform: translate(-30px, 30px) scale(0.9); }
-            75% { transform: translate(30px, 50px) scale(1.05); }
+            33% { transform: translate(60px, -60px) scale(1.08); }
+            66% { transform: translate(-40px, 40px) scale(0.93); }
         }
 
-        /* Navigation */
+        /* ─── Scroll reveal ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ─── Navbar ─── */
+        .navbar-wrap {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+            pointer-events: none;
+        }
         nav {
-            padding: 2rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 100;
-        }
-
-        .logo {
+            pointer-events: all;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            padding: 10px 20px 10px 16px;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 24px;
+            box-shadow: 0 8px 32px rgba(20, 115, 107, 0.12), 0 1px 0 rgba(255,255,255,0.6) inset;
+            max-width: 640px;
+            width: 100%;
         }
-
-        .logo span {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.6rem;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        .nav-logo span {
+            font-size: 1.1rem;
             font-weight: 800;
-            background: var(--gradient-1);
+            color: var(--teal-4);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+        }
+        .nav-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 100px;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover {
+            background: rgba(20, 115, 107, 0.08);
+            color: var(--teal-4);
+        }
+        .nav-cta {
+            flex-shrink: 0;
+        }
+        .nav-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: var(--teal-4);
+            color: white;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+        .nav-cta a:hover {
+            background: var(--teal-5);
+            transform: translateY(-1px);
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 120px 4rem 80px;
+        }
+        .hero-content { }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            background: rgba(20, 115, 107, 0.1);
+            border: 1px solid rgba(20, 115, 107, 0.25);
+            border-radius: 100px;
+            color: var(--teal-4);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 2rem;
+        }
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--teal-3);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 5.5vw, 5.2rem);
+            font-weight: 900;
+            line-height: 1.06;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.6rem;
+            color: var(--text-dark);
+        }
+        .hero h1 .accent-line {
+            display: block;
+            background: linear-gradient(135deg, var(--teal-1) 0%, var(--teal-4) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            max-width: 460px;
         }
-
-        .nav-right {
+        .hero-actions {
             display: flex;
-            flex-direction: column;
+            gap: 14px;
             align-items: center;
-            gap: 0.25rem;
+            flex-wrap: wrap;
         }
-
-        .nav-right span {
+        .btn-app-store-official {
+            display: inline-flex;
+            text-decoration: none;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn-app-store-official:hover {
+            transform: translateY(-2px);
+            opacity: 0.88;
+        }
+        .btn-app-store-official img { display: block; }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            color: var(--teal-4);
+            border: 1.5px solid rgba(20, 115, 107, 0.3);
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover {
+            background: rgba(20, 115, 107, 0.08);
+            border-color: var(--teal-4);
+        }
+        .hero-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+        .hero-social span {
+            font-size: 0.82rem;
             color: var(--text-muted);
             font-weight: 500;
         }
-
-        .nav-social {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .nav-social a {
+        .hero-social a {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s, opacity 0.3s;
+            transition: transform 0.2s, opacity 0.2s;
         }
-
-        .nav-social a:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
+        .hero-social a:hover {
+            transform: translateY(-2px);
+            opacity: 0.75;
         }
+        .hero-social img { width: 24px; height: 24px; }
 
-        .nav-social img {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 4rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease-out;
-        }
-
+        /* ─── Phone Mockup ─── */
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        /* Phone mockup */
-        .phone-mockup {
-            width: 260px;
-            height: 520px;
-            background: var(--text-dark);
-            border-radius: 40px;
             position: relative;
-            box-shadow: 0 40px 80px rgba(15, 43, 39, 0.3), 0 0 0 2px rgba(51, 204, 191, 0.3);
-            overflow: hidden;
         }
-
-        .phone-mockup::before {
-            content: '';
+        .phone-scene {
+            position: relative;
+            width: 280px;
+            overflow: visible;
+        }
+        .phone-shell {
+            width: 280px;
+            height: 560px;
+            background: #0a1f1d;
+            border-radius: 44px;
+            position: relative;
+            z-index: 1;
+            box-shadow:
+                0 60px 120px rgba(10, 31, 29, 0.35),
+                0 0 0 1px rgba(255,255,255,0.06),
+                0 0 0 3px rgba(10, 31, 29, 0.8),
+                inset 0 0 0 1px rgba(255,255,255,0.04);
+            overflow: hidden;
+            transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
+            transition: transform 0.4s ease;
+        }
+        .phone-shell:hover {
+            transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+        }
+        .phone-notch {
             position: absolute;
-            top: 12px;
+            top: 14px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 6px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 3px;
-            z-index: 2;
+            width: 90px;
+            height: 8px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 4px;
+            z-index: 10;
         }
-
         .phone-screen {
             position: absolute;
             inset: 0;
-            background: linear-gradient(160deg, #0F2B27 0%, #1a4a42 40%, #0d3b34 100%);
+            background: linear-gradient(160deg, #0d2622 0%, #133028 50%, #0a1f1d 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem 1.5rem;
-            gap: 1rem;
+            padding: 56px 20px 24px;
+            gap: 0;
         }
-
-        .phone-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .phone-logo img {
+        .phone-status {
+            display: flex;
+            justify-content: space-between;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            margin-bottom: 20px;
         }
-
-        .phone-title {
+        .phone-status span {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+        .phone-app-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .phone-app-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .phone-app-name {
             color: white;
+            font-size: 1.1rem;
             font-weight: 800;
-            font-size: 1.4rem;
-            text-align: center;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
         }
-
-        .phone-subtitle {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.75rem;
-            text-align: center;
+        .phone-prompt {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.72rem;
+            margin-bottom: 18px;
         }
-
         .waveform {
             display: flex;
             align-items: center;
             gap: 3px;
-            margin: 0.5rem 0;
+            margin-bottom: 18px;
         }
-
         .wave-bar {
             width: 4px;
-            background: var(--color-one);
+            background: linear-gradient(180deg, var(--teal-1), var(--teal-3));
             border-radius: 2px;
-            animation: wave 1.2s infinite ease-in-out;
+            animation: wave 1.4s infinite ease-in-out;
         }
-
-        .wave-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
-        .wave-bar:nth-child(2) { height: 24px; animation-delay: 0.1s; }
-        .wave-bar:nth-child(3) { height: 36px; animation-delay: 0.2s; }
-        .wave-bar:nth-child(4) { height: 28px; animation-delay: 0.3s; }
-        .wave-bar:nth-child(5) { height: 40px; animation-delay: 0.4s; }
-        .wave-bar:nth-child(6) { height: 28px; animation-delay: 0.5s; }
-        .wave-bar:nth-child(7) { height: 36px; animation-delay: 0.4s; }
-        .wave-bar:nth-child(8) { height: 24px; animation-delay: 0.3s; }
-        .wave-bar:nth-child(9) { height: 12px; animation-delay: 0.2s; }
-
+        .wave-bar:nth-child(1) { height: 10px; animation-delay: 0.0s; }
+        .wave-bar:nth-child(2) { height: 22px; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 34px; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 26px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 42px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 26px; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 34px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(8) { height: 22px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(9) { height: 10px; animation-delay: 0.2s; }
         @keyframes wave {
             0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.4); }
+            50% { transform: scaleY(0.35); }
         }
-
-        .phone-result {
-            background: rgba(51, 204, 191, 0.15);
-            border: 1px solid rgba(51, 204, 191, 0.3);
-            border-radius: 12px;
-            padding: 0.75rem 1.25rem;
-            text-align: center;
+        .phone-result-card {
+            background: rgba(51, 204, 191, 0.1);
+            border: 1px solid rgba(51, 204, 191, 0.25);
+            border-radius: 16px;
+            padding: 14px 20px;
             width: 100%;
+            text-align: center;
+            margin-bottom: 12px;
         }
-
-        .phone-result-label {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.25rem;
-        }
-
-        .phone-result-accent {
-            color: var(--color-one);
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
-
-        .phone-result-flag {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .phone-confidence {
+        .result-label {
             color: rgba(255,255,255,0.4);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 4px;
         }
-
-        .phone-glow {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 200px;
-            background: var(--color-one);
-            filter: blur(60px);
-            opacity: 0.2;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 5rem;
+        .result-flag { font-size: 1.6rem; line-height: 1; margin-bottom: 4px; }
+        .result-accent {
+            color: var(--teal-1);
+            font-size: 1.05rem;
             font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 2rem;
             letter-spacing: -0.02em;
         }
-
-        .hero h1 .gradient-text {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
+        .result-confidence {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.62rem;
+            margin-top: 2px;
         }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .cta-group {
+        .phone-mentor-row {
             display: flex;
-            gap: 1.5rem;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 10px 14px;
         }
-
-        .btn-primary {
-            display: inline-flex;
+        .mentor-info { display: flex; align-items: center; gap: 8px; }
+        .mentor-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal-1), var(--teal-3));
+            display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1.2rem 2.5rem;
-            background: var(--gradient-1);
-            color: white;
-            text-decoration: none;
-            border-radius: 100px;
+            justify-content: center;
+            font-size: 0.65rem;
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 40px rgba(51, 204, 191, 0.3);
+            color: white;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 50px rgba(51, 204, 191, 0.4);
+        .mentor-name { color: rgba(255,255,255,0.7); font-size: 0.72rem; font-weight: 600; }
+        .mentor-tag { color: rgba(255,255,255,0.35); font-size: 0.6rem; }
+        .mentor-status {
+            width: 8px;
+            height: 8px;
+            background: var(--teal-1);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
         }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.2rem 2.5rem;
+        /* Floating cards around phone */
+        .float-card {
+            position: absolute;
+            z-index: 10;
             background: var(--bg-white);
-            color: var(--color-three);
-            text-decoration: none;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: 2px solid var(--color-three);
-            transition: all 0.3s;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 32px rgba(10, 31, 29, 0.12);
+            white-space: nowrap;
+            animation: float-idle 4s infinite ease-in-out;
         }
-
-        .btn-secondary:hover {
-            background: var(--color-three);
-            color: white;
-            border-color: var(--color-three);
+        .float-card-left {
+            left: -90px;
+            top: 20%;
+            animation-delay: 0s;
         }
+        .float-card-right {
+            right: -80px;
+            bottom: 25%;
+            animation-delay: 2s;
+        }
+        @keyframes float-idle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-card .fc-label { font-size: 0.65rem; color: var(--text-muted); font-weight: 500; }
+        .float-card .fc-value { font-size: 0.9rem; font-weight: 800; color: var(--text-dark); }
+        .float-card .fc-sub { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; }
+        .float-stars { color: #f59e0b; font-size: 0.8rem; letter-spacing: -1px; }
 
-        /* Stats Strip */
+        /* ─── Stats strip ─── */
         .stats-strip {
             background: var(--bg-white);
-            border-top: 1px solid rgba(26, 140, 128, 0.12);
-            border-bottom: 1px solid rgba(26, 140, 128, 0.12);
-            padding: 2.5rem 4rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 4rem;
         }
-
         .stats-inner {
-            max-width: 1400px;
+            max-width: 1320px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1rem;
             text-align: center;
         }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .stat-value {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-1);
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-val {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--teal-1), var(--teal-4));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1;
         }
+        .stat-lbl { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
 
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Accent Cards */
-        .accents-section {
-            padding: 8rem 4rem;
-            max-width: 1400px;
+        /* ─── Section base ─── */
+        .section-inner {
+            max-width: 1320px;
             margin: 0 auto;
+            padding: 0 4rem;
+        }
+        .section-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--teal-4);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-body);
+            line-height: 1.75;
+            max-width: 560px;
         }
 
-        .section-header {
+        /* ─── How it works ─── */
+        .how-section {
+            padding: 7rem 0;
+            background: var(--bg-white);
+        }
+        .how-header { text-align: center; margin-bottom: 5rem; }
+        .how-header .section-sub { margin: 0 auto; }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            position: relative;
+        }
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: calc(16.66% + 20px);
+            right: calc(16.66% + 20px);
+            height: 1px;
+            background: linear-gradient(90deg, var(--teal-2), var(--teal-3));
+            opacity: 0.25;
+        }
+        .step-card {
             text-align: center;
-            margin-bottom: 5rem;
+            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            background: var(--bg-light);
+            border: 1px solid rgba(20, 115, 107, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .section-header h2 {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(20, 115, 107, 0.1);
         }
-
-        .section-header p {
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--teal-1), var(--teal-3));
+            color: white;
             font-size: 1.3rem;
-            color: var(--text-muted);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(20, 115, 107, 0.3);
         }
+        .step-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .step-card p { color: var(--text-body); font-size: 0.95rem; line-height: 1.7; }
 
+        /* ─── Accents ─── */
+        .accents-section { padding: 7rem 0; }
+        .accents-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .accents-sidebar .section-sub { margin-bottom: 2rem; }
         .accent-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
         }
-
         .accent-card {
             background: var(--bg-white);
-            border: 1px solid rgba(26, 140, 128, 0.15);
-            border-radius: 24px;
-            padding: 1.75rem;
-            transition: all 0.3s;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.25s;
+            cursor: default;
             position: relative;
             overflow: hidden;
         }
-
-        .accent-card::before {
+        .accent-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal-1), var(--teal-3));
             transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s;
         }
-
         .accent-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--color-two);
-            box-shadow: 0 10px 30px rgba(26, 140, 128, 0.15);
+            transform: translateY(-4px);
+            border-color: rgba(20, 115, 107, 0.3);
+            box-shadow: 0 12px 32px rgba(20, 115, 107, 0.1);
         }
+        .accent-card:hover::after { transform: scaleX(1); }
+        .accent-flag { font-size: 1.8rem; margin-bottom: 10px; line-height: 1; }
+        .accent-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.01em; }
+        .accent-card p { color: var(--text-muted); font-size: 0.8rem; line-height: 1.5; }
 
-        .accent-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .accent-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .accent-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .accent-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Features Section */
+        /* ─── Features ─── */
         .features-section {
-            padding: 8rem 4rem;
+            padding: 7rem 0;
             background: var(--bg-white);
-            position: relative;
         }
-
+        .features-header { text-align: center; margin-bottom: 5rem; }
+        .features-header .section-sub { margin: 0 auto; }
         .features-grid {
-            max-width: 1400px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
-
-        .feature {
-            animation: fadeInUp 1s ease-out;
-            animation-fill-mode: both;
+        .feature-card {
+            padding: 2.5rem;
+            border-radius: 28px;
+            background: var(--bg-light);
+            border: 1px solid rgba(20, 115, 107, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .feature:nth-child(1) { animation-delay: 0.1s; }
-        .feature:nth-child(2) { animation-delay: 0.2s; }
-        .feature:nth-child(3) { animation-delay: 0.3s; }
-
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 48px rgba(20, 115, 107, 0.1);
+        }
         .feature-number {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            background: var(--gradient-2);
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--teal-1) 0%, var(--teal-4) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
+            opacity: 0.5;
         }
-
-        .feature h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 4rem;
+        .feature-card h3 {
+            font-size: 1.35rem;
             font-weight: 800;
-            margin-bottom: 2rem;
-            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
         }
+        .feature-card p { color: var(--text-body); font-size: 0.95rem; line-height: 1.75; }
 
-        .cta-section p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
+        /* ─── Coming soon section ─── */
+        .coming-section {
+            padding: 7rem 0;
+            background: var(--teal-5);
+            position: relative;
+            overflow: hidden;
         }
-
-        .waitlist-badge {
+        .coming-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(51, 204, 191, 0.12) 0%, transparent 70%);
+        }
+        .coming-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+        }
+        .coming-left .section-eyebrow { color: rgba(51, 204, 191, 0.7); }
+        .coming-left .section-title { color: white; }
+        .coming-left .section-sub { color: rgba(255,255,255,0.65); max-width: 400px; }
+        .coming-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+        .chip {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(51, 204, 191, 0.1);
-            border: 1px solid rgba(51, 204, 191, 0.3);
+            gap: 8px;
+            padding: 9px 16px;
             border-radius: 100px;
-            color: var(--color-three);
+            border: 1px solid rgba(51, 204, 191, 0.25);
+            background: rgba(51, 204, 191, 0.08);
+            color: rgba(255,255,255,0.85);
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 2rem;
         }
+        .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-1); }
+        .coming-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .coming-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px 24px;
+            transition: background 0.2s;
+        }
+        .coming-card:hover { background: rgba(255,255,255,0.08); }
+        .coming-card-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .coming-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--teal-2), var(--teal-4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .coming-card h4 { color: white; font-size: 1rem; font-weight: 700; }
+        .coming-card p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.6; }
+        .mentor-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .mentor-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mentor-av {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal-1), var(--teal-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+        .mentor-item-text strong { color: white; font-size: 0.88rem; font-weight: 700; }
+        .mentor-item-text span { color: rgba(255,255,255,0.45); font-size: 0.78rem; display: block; }
 
-        /* Footer */
-        footer {
-            padding: 3rem 4rem;
-            border-top: 1px solid rgba(26, 140, 128, 0.15);
+        /* ─── CTA ─── */
+        .cta-section {
+            padding: 7rem 0;
             text-align: center;
         }
+        .cta-section .section-title { margin-bottom: 1.2rem; }
+        .cta-section .section-sub { margin: 0 auto 2.5rem; text-align: center; }
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
 
-        .footer-content {
-            max-width: 1400px;
+        /* ─── Footer ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 4rem;
+        }
+        .footer-inner {
+            max-width: 1320px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
+        .footer-copy { color: var(--text-muted); font-size: 0.88rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.88rem;
+            transition: color 0.2s;
         }
-
-        .footer-links a:hover {
-            color: var(--text-dark);
-        }
-
-        .footer-copyright {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .social-links a {
+        .footer-links a:hover { color: var(--teal-4); }
+        .footer-social { display: flex; gap: 10px; align-items: center; }
+        .footer-social a {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s, opacity 0.3s;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .social-links a:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
+        .footer-social a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(20, 115, 107, 0.15);
         }
+        .footer-social img { width: 18px; height: 18px; }
 
-        .social-links img {
-            width: 32px;
-            height: 32px;
+        /* ─── Responsive ─── */
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; padding: 110px 3rem 5rem; text-align: center; }
+            .hero-desc { margin: 0 auto 2.5rem; }
+            .hero-actions { justify-content: center; }
+            .hero-social { justify-content: center; }
+            .hero-visual { display: none; }
+            .accents-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .coming-inner { grid-template-columns: 1fr; gap: 3rem; }
         }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .cta-group {
-                justify-content: center;
-            }
-
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        @media (max-width: 900px) {
+            .steps-grid { grid-template-columns: 1fr; }
+            .steps-grid::before { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .accent-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
         }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem 2rem;
-            }
-
-            .hero {
-                padding: 4rem 2rem 2rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .cta-group {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn-primary, .btn-secondary {
-                justify-content: center;
-            }
-
-            .accents-section, .features-section, .cta-section {
-                padding: 4rem 2rem;
-            }
-
-            .stats-strip {
-                padding: 2rem;
-            }
-
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .section-header h2 {
-                font-size: 2.5rem;
-            }
-
-            .accent-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-section h2 {
-                font-size: 2.5rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
+        @media (max-width: 640px) {
+            nav { padding: 9px 14px; }
+            .nav-links { display: none; }
+            .hero { padding: 100px 1.5rem 4rem; }
+            .section-inner { padding: 0 1.5rem; }
+            .stats-strip { padding: 2rem 1.5rem; }
+            .how-section, .accents-section, .features-section, .cta-section { padding: 5rem 0; }
+            .coming-inner { padding: 0 1.5rem; }
+            footer { padding: 2rem 1.5rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .accent-grid { grid-template-columns: 1fr 1fr; }
+            .float-card { display: none; }
         }
-
-        @media (max-width: 480px) {
-            .accent-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-inner {
-                grid-template-columns: 1fr 1fr;
-            }
+        @media (max-width: 400px) {
+            .accent-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="background-animation">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+
+    <!-- Background -->
+    <div class="bg-canvas">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
     </div>
 
-    <nav>
-        <div class="logo">
-            <img src="websiteLogo.png" alt="Accenta Logo" class="logo-icon">
-            <span>Accenta</span>
-        </div>
-        <div class="nav-right">
-            <span>Follow us</span>
-            <div class="nav-social">
+    <!-- ════════════════════════════════════ -->
+    <!-- NAVBAR                              -->
+    <!-- ════════════════════════════════════ -->
+    <div class="navbar-wrap">
+        <nav>
+            <a href="#" class="nav-logo">
+                <img src="websiteLogo.png" alt="Accenta">
+                <span>Accenta</span>
+            </a>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#accents">Accents</a>
+                <a href="#coming-soon">Version 2.0</a>
+            </div>
+            <div class="nav-cta">
+                <a href="https://apps.apple.com/app/id6756681361">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                        <path d="M17.05 20.28C16.03 21.23 14.96 21.08 13.95 20.59C12.89 20.09 11.92 20.07 10.79 20.59C9.37 21.23 8.59 21.05 7.69 20.28C2.78 15.25 3.51 7.59 9.05 7.31C10.4 7.38 11.34 8.05 12.13 8.11C13.31 7.87 14.44 7.18 15.7 7.27C17.21 7.39 18.35 7.99 19.1 9.07C15.98 10.94 16.72 15.05 19.58 16.09C19.01 17.6 18.27 19.1 17.04 20.29L17.05 20.28ZM12.03 7.25C11.88 5.02 13.69 3.18 15.77 3C16.06 5.58 13.43 7.5 12.03 7.25Z" fill="currentColor"/>
+                    </svg>
+                    Download Free
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- HERO                                -->
+    <!-- ════════════════════════════════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <span class="badge-dot"></span>
+                AI Accent Coaching · Free on iOS
+            </div>
+            <h1 class="reveal reveal-delay-1">
+                Speak Like<br>
+                <span class="accent-line">a Native.</span>
+            </h1>
+            <p class="hero-desc reveal reveal-delay-2">
+                Identify your English accent instantly, then train with AI coaches to sound naturally fluent — American, British, or Australian.
+            </p>
+            <div class="hero-actions reveal reveal-delay-3">
+                <a href="https://apps.apple.com/app/id6756681361" class="btn-app-store-official">
+                    <img src="app-store-badge.svg" alt="Download on the App Store" height="54">
+                </a>
+                <a href="#how-it-works" class="btn-ghost">
+                    How it works
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-social reveal reveal-delay-4">
+                <span>Follow us</span>
                 <a href="https://www.instagram.com/accentaio/" target="_blank" rel="noopener noreferrer">
                     <img src="insta_green.png" alt="Instagram">
                 </a>
@@ -808,178 +961,302 @@
                 </a>
             </div>
         </div>
-    </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>
-                Discover Your <span class="gradient-text">English Accent</span>
-            </h1>
-            <p>
-                Instantly identify one of 16 English accents and receive personalized results based on your speech. AI-powered accent coaching, free on iOS.
-            </p>
-            <div class="cta-group">
-                <a href="https://apps.apple.com/app/id6756681361" class="btn-primary">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M17.05 20.28C16.03 21.23 14.96 21.08 13.95 20.59C12.89 20.09 11.92 20.07 10.79 20.59C9.37 21.23 8.59 21.05 7.69 20.28C2.78 15.25 3.51 7.59 9.05 7.31C10.4 7.38 11.34 8.05 12.13 8.11C13.31 7.87 14.44 7.18 15.7 7.27C17.21 7.39 18.35 7.99 19.1 9.07C15.98 10.94 16.72 15.05 19.58 16.09C19.01 17.6 18.27 19.1 17.04 20.29L17.05 20.28ZM12.03 7.25C11.88 5.02 13.69 3.18 15.77 3C16.06 5.58 13.43 7.5 12.03 7.25Z" fill="currentColor"/>
-                    </svg>
-                    Download Free on App Store
-                </a>
-                <a href="#how-it-works" class="btn-secondary">
-                    How It Works
-                </a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="phone-logo">
-                        <img src="websiteLogo.png" alt="Accenta">
-                    </div>
-                    <div class="phone-title">Accenta</div>
-                    <div class="phone-subtitle">Speak naturally to begin</div>
-                    <div class="waveform">
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                    </div>
-                    <div class="phone-result">
-                        <div class="phone-result-flag">🇬🇧</div>
-                        <div class="phone-result-label">Detected Accent</div>
-                        <div class="phone-result-accent">British RP</div>
-                        <div class="phone-confidence">94% confidence</div>
+        <div class="hero-visual reveal reveal-delay-2">
+            <div class="phone-scene">
+                <!-- Floating cards -->
+                <div class="float-card float-card-left">
+                    <div class="fc-label">Accent detected</div>
+                    <div class="fc-value">British RP</div>
+                    <div class="fc-sub">94% confidence</div>
+                </div>
+                <div class="float-card float-card-right">
+                    <div class="float-stars">★★★★★</div>
+                    <div class="fc-value">4.9 rating</div>
+                    <div class="fc-sub">App Store</div>
+                </div>
+                <!-- Phone -->
+                <div class="phone-shell">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="phone-status">
+                            <span>9:41</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="phone-app-icon">
+                            <img src="websiteLogo.png" alt="Accenta">
+                        </div>
+                        <div class="phone-app-name">Accenta</div>
+                        <div class="phone-prompt">Speak naturally to begin</div>
+                        <div class="waveform">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <div class="phone-result-card">
+                            <div class="result-label">Detected Accent</div>
+                            <div class="result-flag">🇬🇧</div>
+                            <div class="result-accent">British RP</div>
+                            <div class="result-confidence">94% confidence</div>
+                        </div>
+                        <div class="phone-mentor-row">
+                            <div class="mentor-info">
+                                <div class="mentor-avatar">A</div>
+                                <div>
+                                    <div class="mentor-name">Alex</div>
+                                    <div class="mentor-tag">AI Coach</div>
+                                </div>
+                            </div>
+                            <div class="mentor-status"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="phone-glow"></div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Strip -->
+    <!-- ════════════════════════════════════ -->
+    <!-- STATS STRIP                         -->
+    <!-- ════════════════════════════════════ -->
     <div class="stats-strip">
         <div class="stats-inner">
-            <div class="stat-item">
-                <div class="stat-value">16</div>
-                <div class="stat-label">English Accents</div>
+            <div class="stat-item reveal">
+                <div class="stat-val">16</div>
+                <div class="stat-lbl">English Accents</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">AI</div>
-                <div class="stat-label">Powered Analysis</div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="stat-val">AI</div>
+                <div class="stat-lbl">Powered Analysis</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">Free</div>
-                <div class="stat-label">Download on iOS</div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="stat-val">Free</div>
+                <div class="stat-lbl">on iOS</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">Instant</div>
-                <div class="stat-label">Results</div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="stat-val">Instant</div>
+                <div class="stat-lbl">Results</div>
             </div>
         </div>
     </div>
 
-    <section class="accents-section" id="features">
-        <div class="section-header">
-            <h2>16 English Accents Identified</h2>
-            <p>Advanced AI technology recognizes accents from around the world</p>
-        </div>
-        <div class="accent-grid">
-            <div class="accent-card">
-                <div class="accent-icon">🇺🇸</div>
-                <h3>American</h3>
-                <p>General American, Southern, New York, and more regional variations</p>
+    <!-- ════════════════════════════════════ -->
+    <!-- HOW IT WORKS                        -->
+    <!-- ════════════════════════════════════ -->
+    <section class="how-section" id="how-it-works">
+        <div class="section-inner">
+            <div class="how-header reveal">
+                <p class="section-eyebrow">How it works</p>
+                <h2 class="section-title">Three steps to a better accent</h2>
+                <p class="section-sub">No complicated setup. Just open the app, speak naturally, and get results in seconds.</p>
             </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇬🇧</div>
-                <h3>British</h3>
-                <p>Received Pronunciation, Cockney, Scottish, Welsh accents</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇦🇺</div>
-                <h3>Australian</h3>
-                <p>Distinctive Australian English pronunciation patterns</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇨🇦</div>
-                <h3>Canadian</h3>
-                <p>Canadian English with its unique vowel shifts and characteristics</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇮🇪</div>
-                <h3>Irish</h3>
-                <p>Rich and melodic Irish English variations from across Ireland</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇳🇿</div>
-                <h3>New Zealand</h3>
-                <p>Kiwi English with its distinctive vowel sounds</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇿🇦</div>
-                <h3>South African</h3>
-                <p>The unique sounds of South African English</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🇮🇳</div>
-                <h3>Indian</h3>
-                <p>Indian English with its distinctive rhythm and intonation</p>
-            </div>
-            <div class="accent-card">
-                <div class="accent-icon">🌍</div>
-                <h3>And More</h3>
-                <p>Including Nigerian, Caribbean, Filipino, and other global accents</p>
+            <div class="steps-grid">
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-num">01</div>
+                    <h3>Speak Naturally</h3>
+                    <p>No reading aloud — just talk. Accenta listens to your natural speech patterns to identify your unique accent.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-num">02</div>
+                    <h3>Get Instant Results</h3>
+                    <p>Receive detailed insights about your accent in real time. See which of 16 English accents matches yours, with confidence scores.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-num">03</div>
+                    <h3>Train with AI</h3>
+                    <p>Work with your personal AI coach — adapted to your interests, mood, and goals — to refine your pronunciation daily.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="features-section" id="how-it-works">
-        <div class="features-grid">
-            <div class="feature">
-                <div class="feature-number">01</div>
-                <h3>Instant Analysis</h3>
-                <p>Speak naturally and receive immediate, accurate accent identification powered by advanced AI technology that analyzes your pronunciation patterns.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-number">02</div>
-                <h3>Personalized Results</h3>
-                <p>Get detailed insights about your accent characteristics, strengths, and areas for improvement with comprehensive feedback tailored specifically to you.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-number">03</div>
-                <h3>AI Coaching Coming Soon</h3>
-                <p>Be first in line for AI-powered accent coaching that helps you refine your pronunciation and speak more naturally in any English accent you choose.</p>
+    <!-- ════════════════════════════════════ -->
+    <!-- ACCENTS                             -->
+    <!-- ════════════════════════════════════ -->
+    <section class="accents-section" id="accents">
+        <div class="section-inner">
+            <div class="accents-layout">
+                <div class="accents-sidebar reveal">
+                    <p class="section-eyebrow">Accent Detection</p>
+                    <h2 class="section-title">16 English<br>Accents Identified</h2>
+                    <p class="section-sub">From General American to British RP, Australian, Irish, and beyond — Accenta's AI recognizes them all with remarkable precision.</p>
+                    <a href="https://apps.apple.com/app/id6756681361" class="btn-app-store-official" style="margin-top:2rem;display:inline-flex">
+                        <img src="app-store-badge.svg" alt="Download on the App Store" height="50">
+                    </a>
+                </div>
+                <div class="accent-grid">
+                    <div class="accent-card reveal reveal-delay-1">
+                        <div class="accent-flag">🇺🇸</div>
+                        <h3>American</h3>
+                        <p>General American, Southern, New York and regional variations</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-2">
+                        <div class="accent-flag">🇬🇧</div>
+                        <h3>British</h3>
+                        <p>Received Pronunciation, Cockney, Scottish, Welsh</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-3">
+                        <div class="accent-flag">🇦🇺</div>
+                        <h3>Australian</h3>
+                        <p>Distinctive Australian English pronunciation</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-1">
+                        <div class="accent-flag">🇨🇦</div>
+                        <h3>Canadian</h3>
+                        <p>Canadian English with unique vowel shifts</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-2">
+                        <div class="accent-flag">🇮🇪</div>
+                        <h3>Irish</h3>
+                        <p>Rich, melodic Irish English from across Ireland</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-3">
+                        <div class="accent-flag">🇳🇿</div>
+                        <h3>New Zealand</h3>
+                        <p>Kiwi English with distinctive vowel sounds</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-1">
+                        <div class="accent-flag">🇿🇦</div>
+                        <h3>South African</h3>
+                        <p>The unique sounds of South African English</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-2">
+                        <div class="accent-flag">🇮🇳</div>
+                        <h3>Indian</h3>
+                        <p>Indian English with distinctive rhythm</p>
+                    </div>
+                    <div class="accent-card reveal reveal-delay-3">
+                        <div class="accent-flag">🌍</div>
+                        <h3>And More</h3>
+                        <p>Nigerian, Caribbean, Filipino and more global accents</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ════════════════════════════════════ -->
+    <!-- FEATURES                            -->
+    <!-- ════════════════════════════════════ -->
+    <section class="features-section" id="features">
+        <div class="section-inner">
+            <div class="features-header reveal">
+                <p class="section-eyebrow">Features</p>
+                <h2 class="section-title">Everything you need to improve</h2>
+                <p class="section-sub">Built for real learning — not gamified busywork. Every feature is designed to make your pronunciation measurably better.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-number">01</div>
+                    <h3>Instant Accent Analysis</h3>
+                    <p>Speak naturally and receive immediate, accurate accent identification. Our AI analyzes your pronunciation patterns in real time with deep learning models trained on thousands of speakers.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-number">02</div>
+                    <h3>AI-Generated Coaches</h3>
+                    <p>Learn with a human-like AI coach that adapts to your interests, mood, and learning style. Every session feels personal, engaging, and tailored specifically to your progress.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-number">03</div>
+                    <h3>Smart Word Suggestions</h3>
+                    <p>No need to search for practice materials. Accenta gives you intelligent, context-aware word and sentence recommendations — the ones that actually matter for your accent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- COMING SOON: ACCENTA 2.0            -->
+    <!-- ════════════════════════════════════ -->
+    <section class="coming-section" id="coming-soon">
+        <div class="coming-inner">
+            <div class="coming-left reveal">
+                <p class="section-eyebrow">Coming Spring 2026</p>
+                <h2 class="section-title">Accenta 2.0 is on its way</h2>
+                <p class="section-sub">Full accent courses, handpicked AI mentors, and a built-in sentence library. Everything you need to speak like a native — in one app.</p>
+                <div class="coming-chips">
+                    <div class="chip"><div class="chip-dot"></div> American Accent</div>
+                    <div class="chip"><div class="chip-dot"></div> British RP</div>
+                    <div class="chip"><div class="chip-dot"></div> Australian</div>
+                </div>
+            </div>
+            <div class="coming-right">
+                <div class="coming-card reveal reveal-delay-1">
+                    <div class="coming-card-head">
+                        <div class="coming-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h4>Three Full Accent Courses</h4>
+                    </div>
+                    <p>Structured, step-by-step courses for American, British, and Australian English. Learn at your own pace with guided lessons designed by accent experts.</p>
+                </div>
+                <div class="coming-card reveal reveal-delay-2">
+                    <div class="coming-card-head">
+                        <div class="coming-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h4>Choose Your AI Mentor</h4>
+                    </div>
+                    <div class="mentor-list">
+                        <div class="mentor-item">
+                            <div class="mentor-av">A</div>
+                            <div class="mentor-item-text">
+                                <strong>Alex</strong>
+                                <span>Calm, focused, patient</span>
+                            </div>
+                        </div>
+                        <div class="mentor-item">
+                            <div class="mentor-av">K</div>
+                            <div class="mentor-item-text">
+                                <strong>Keisha</strong>
+                                <span>Fast, energetic, motivational</span>
+                            </div>
+                        </div>
+                        <div class="mentor-item">
+                            <div class="mentor-av">M</div>
+                            <div class="mentor-item-text">
+                                <strong>Mateo</strong>
+                                <span>Treats you like a close friend</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- CTA                                 -->
+    <!-- ════════════════════════════════════ -->
     <section class="cta-section">
-        <div class="waitlist-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
-            </svg>
-            Join Early Access
+        <div class="section-inner">
+            <p class="section-eyebrow reveal" style="text-align:center">Start today</p>
+            <h2 class="section-title reveal reveal-delay-1">Your accent deserves<br>to be heard.</h2>
+            <p class="section-sub reveal reveal-delay-2">Download Accenta free on iOS and discover what your unique English voice is — then make it even better.</p>
+            <div class="cta-group reveal reveal-delay-3">
+                <a href="https://apps.apple.com/app/id6756681361" class="btn-app-store-official">
+                    <img src="app-store-badge.svg" alt="Download on the App Store" height="54">
+                </a>
+            </div>
         </div>
-        <h2>Ready to discover your accent?</h2>
-        <p>Download Accenta free on iOS and start your journey to understanding your unique English voice.</p>
-        <a href="https://apps.apple.com/app/id6756681361" class="btn-primary">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M17.05 20.28C16.03 21.23 14.96 21.08 13.95 20.59C12.89 20.09 11.92 20.07 10.79 20.59C9.37 21.23 8.59 21.05 7.69 20.28C2.78 15.25 3.51 7.59 9.05 7.31C10.4 7.38 11.34 8.05 12.13 8.11C13.31 7.87 14.44 7.18 15.7 7.27C17.21 7.39 18.35 7.99 19.1 9.07C15.98 10.94 16.72 15.05 19.58 16.09C19.01 17.6 18.27 19.1 17.04 20.29L17.05 20.28ZM12.03 7.25C11.88 5.02 13.69 3.18 15.77 3C16.06 5.58 13.43 7.5 12.03 7.25Z" fill="currentColor"/>
-            </svg>
-            Download Free on App Store
-        </a>
     </section>
 
+    <!-- ════════════════════════════════════ -->
+    <!-- FOOTER                              -->
+    <!-- ════════════════════════════════════ -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-copyright">
-                © 2026 Accenta. All rights reserved.
-            </div>
-            <div class="social-links">
+        <div class="footer-inner">
+            <div class="footer-copy">© 2026 Accenta. All rights reserved.</div>
+            <div class="footer-social">
                 <a href="https://www.instagram.com/accentaio/" target="_blank" rel="noopener noreferrer">
                     <img src="insta_green.png" alt="Instagram">
                 </a>
@@ -991,11 +1268,36 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="terms/">Terms & Conditions</a>
-                <a href="privacy/">Privacy Policy</a>
-                <a href="mailto:fialex66@gmail.com?subject=Accenta%20Contact%20Request">Contact Us</a>
+                <a href="terms/">Terms</a>
+                <a href="privacy/">Privacy</a>
+                <a href="mailto:info@accenta.io?subject=Accenta%20Contact%20Request">Contact</a>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Parallax phone tilt on mouse move (desktop only)
+        const phone = document.querySelector('.phone-shell');
+        if (phone && window.innerWidth > 1100) {
+            document.addEventListener('mousemove', (e) => {
+                const cx = window.innerWidth / 2;
+                const cy = window.innerHeight / 2;
+                const dx = (e.clientX - cx) / cx;
+                const dy = (e.clientY - cy) / cy;
+                phone.style.transform = `perspective(1200px) rotateY(${-8 + dx * 4}deg) rotateX(${4 - dy * 3}deg)`;
+            });
+        }
+    </script>
 </body>
 </html>
