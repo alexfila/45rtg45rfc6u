@@ -22,8 +22,13 @@ jobs:
 
       - run: npm run build
 
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          cname: accenta.io
+      # Copy built files to repo root so GitHub Pages (main branch) serves them
+      - name: Commit built files to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cp -r dist/assets .
+          cp dist/index.html index.html
+          git add index.html assets/
+          git diff --cached --quiet || git commit -m "ci: deploy built assets [skip ci]"
+          git push
