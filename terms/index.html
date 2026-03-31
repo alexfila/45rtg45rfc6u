@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions – Accenta</title>
+    <meta name="description" content="Terms and Conditions for Accenta – AI-powered accent coaching app.">
+    <link rel="icon" type="image/png" sizes="32x32" href="../websitefavicon.png">
+    <link rel="shortcut icon" href="../websitefavicon.png">
+    <link rel="apple-touch-icon" href="../websiteLogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --teal-1: #33CCBF;
+            --teal-2: #26A699;
+            --teal-3: #1A8C80;
+            --teal-4: #14736B;
+            --teal-5: #0d5c55;
+            --bg-light: #eef8f7;
+            --bg-white: #ffffff;
+            --text-dark: #0a1f1d;
+            --text-body: #2d5c57;
+            --text-muted: #4d8079;
+            --border: rgba(20, 115, 107, 0.14);
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Animated background ─── */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.22;
+            animation: drift 24s infinite ease-in-out;
+        }
+        .orb-a { width: 600px; height: 600px; background: var(--teal-1); top: -200px; left: -150px; animation-delay: 0s; }
+        .orb-b { width: 500px; height: 500px; background: var(--teal-3); bottom: -200px; right: -100px; animation-delay: 7s; }
+        .orb-c { width: 380px; height: 380px; background: var(--teal-2); top: 45%; right: 8%; animation-delay: 14s; }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -60px) scale(1.08); }
+            66% { transform: translate(-40px, 40px) scale(0.93); }
+        }
+
+        /* ─── Navbar ─── */
+        .navbar-wrap {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+            pointer-events: none;
+        }
+        nav {
+            pointer-events: all;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            padding: 10px 20px 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 8px 32px rgba(20, 115, 107, 0.12), 0 1px 0 rgba(255,255,255,0.6) inset;
+            max-width: 540px;
+            width: 100%;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        .nav-logo span {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--teal-4);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .nav-spacer { flex: 1; }
+        .nav-cta {
+            flex-shrink: 0;
+        }
+        .nav-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: var(--teal-4);
+            color: white;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+        .nav-cta a:hover {
+            background: var(--teal-5);
+            transform: translateY(-1px);
+        }
+
+        /* ─── Page content ─── */
+        .page-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 140px 2rem 6rem;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            animation: fadeUp 0.7s ease-out both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(20, 115, 107, 0.1);
+            border: 1px solid rgba(20, 115, 107, 0.2);
+            border-radius: 100px;
+            color: var(--teal-4);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header h1 .accent {
+            background: linear-gradient(135deg, var(--teal-1) 0%, var(--teal-4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .effective-date {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .content-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem 3.5rem;
+            box-shadow: 0 4px 32px rgba(20, 115, 107, 0.07);
+            animation: fadeUp 0.7s ease-out 0.15s both;
+        }
+
+        .content-card h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--teal-4);
+            letter-spacing: -0.02em;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .content-card h2:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .content-card p {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--text-body);
+            margin-bottom: 1.1rem;
+        }
+        .content-card p:last-child { margin-bottom: 0; }
+
+        .content-card a {
+            color: var(--teal-3);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .content-card a:hover {
+            color: var(--teal-1);
+            text-decoration: underline;
+        }
+
+        .content-footer-note {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+        }
+        .footer-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .footer-copy { color: var(--text-muted); font-size: 0.88rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--teal-4); }
+        .footer-social { display: flex; gap: 12px; align-items: center; }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .footer-social a:hover {
+            transform: translateY(-2px);
+            opacity: 0.75;
+        }
+        .footer-social img { width: 22px; height: 22px; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .content-card { padding: 2rem 1.5rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-canvas">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
+    </div>
+
+    <div class="navbar-wrap">
+        <nav>
+            <a href="../" class="nav-logo">
+                <img src="../websiteLogo.png" alt="Accenta">
+                <span>Accenta</span>
+            </a>
+            <div class="nav-spacer"></div>
+            <div class="nav-cta">
+                <a href="../">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="page-wrap">
+        <div class="page-header">
+            <div class="page-eyebrow">Legal</div>
+            <h1>Terms &amp; <span class="accent">Conditions</span></h1>
+            <p class="effective-date">Effective Date: January 16, 2026</p>
+        </div>
+
+        <div class="content-card">
+            <p>Welcome to Accenta. These Terms and Conditions govern your use of the Accenta mobile application (the "App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the App.</p>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using Accenta, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, as well as our Privacy Policy. These Terms constitute a legally binding agreement between you and Accenta.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>Accenta is an accent identification and analysis application that uses artificial intelligence technology to help users discover their English accent patterns and characteristics. The App identifies one of 16 English accent variations and provides personalized feedback based on your speech input.</p>
+
+            <h2>3. User Eligibility</h2>
+            <p>You must be at least 13 years of age to use this App. By using Accenta, you represent and warrant that you meet this age requirement. If you are under 18 years of age, you must have permission from a parent or legal guardian to use the App.</p>
+
+            <h2>4. User Responsibilities</h2>
+            <p>As a user of Accenta, you agree to:</p>
+            <p>Use the App only for lawful purposes and in accordance with these Terms. Provide accurate information when using the App's features. Not attempt to reverse engineer, decompile, or disassemble any portion of the App. Not use the App in any manner that could damage, disable, overburden, or impair the App's functionality. Not interfere with any other party's use and enjoyment of the App.</p>
+
+            <h2>5. Intellectual Property Rights</h2>
+            <p>All content, features, and functionality of the App, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the exclusive property of Accenta and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+            <p>You are granted a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes in accordance with these Terms.</p>
+
+            <h2>6. Privacy and Data Protection</h2>
+            <p>Your privacy is important to us. The Accenta application does not collect, store, or share any user-identifiable data outside of your device. However, the App integrates third-party APIs that may collect information. Please review our Privacy Policy and the privacy policies of third-party services for complete information about data practices.</p>
+
+            <h2>7. Third-Party Services</h2>
+            <p>The App may integrate with or contain links to third-party services, APIs, or websites. We are not responsible for the content, privacy policies, or practices of any third-party services. Your use of third-party services is at your own risk, and you should review their terms and privacy policies.</p>
+
+            <h2>8. Disclaimer of Warranties</h2>
+            <p>The App is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied. Accenta does not warrant that the App will be uninterrupted, error-free, or free of viruses or other harmful components. The accuracy of accent identification results is not guaranteed, and the App should be used for informational and educational purposes only.</p>
+
+            <h2>9. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, Accenta shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from your use or inability to use the App.</p>
+
+            <h2>10. Updates and Modifications</h2>
+            <p>We reserve the right to modify, suspend, or discontinue the App or any part thereof at any time without notice. We may also update these Terms from time to time. The updated Terms will be posted in the App, and the "Effective Date" will be revised accordingly. Your continued use of the App following the posting of changes constitutes acceptance of those changes.</p>
+
+            <h2>11. Termination</h2>
+            <p>We reserve the right to terminate or suspend your access to the App immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination, your right to use the App will immediately cease.</p>
+
+            <h2>12. Governing Law and Dispute Resolution</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Accenta operates, without regard to its conflict of law provisions. Any disputes arising from these Terms or your use of the App shall be resolved through binding arbitration or in the courts of competent jurisdiction.</p>
+
+            <h2>13. Severability</h2>
+            <p>If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, such provision shall be severed from these Terms, and the remaining provisions shall continue in full force and effect.</p>
+
+            <h2>14. Entire Agreement</h2>
+            <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Accenta regarding the use of the App and supersede all prior agreements and understandings, whether written or oral.</p>
+
+            <h2>15. Contact Information</h2>
+            <p>If you have any questions, concerns, or feedback regarding these Terms and Conditions, please contact us via the contact us button on our website.</p>
+
+            <p class="content-footer-note">By using Accenta, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2026 Accenta. All rights reserved.</div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/accentaio/" target="_blank" rel="noopener noreferrer">
+                    <img src="../insta_green.png" alt="Instagram">
+                </a>
+                <a href="https://www.tiktok.com/@accentaio" target="_blank" rel="noopener noreferrer">
+                    <img src="../tiktok_green.png" alt="TikTok">
+                </a>
+                <a href="https://www.youtube.com/@accentaio" target="_blank" rel="noopener noreferrer">
+                    <img src="../youtube_green.png" alt="YouTube">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="../terms/">Terms</a>
+                <a href="../privacy/">Privacy</a>
+                <a href="mailto:info@accenta.io?subject=Accenta%20Contact%20Request">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
