@@ -1,25 +1,39 @@
-import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 
 export default function Reveal({ children, delay = 0, className = '', style = {} }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-40px' })
-  const [hasPlayed, setHasPlayed] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (isInView) setHasPlayed(true)
-  }, [isInView])
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '-40px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={className}
-      style={style}
-      initial={{ opacity: 0, y: 28 }}
-      animate={hasPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-      transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      style={{
+        ...style,
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(28px)',
+        transition: visible
+          ? `opacity 0.7s ${delay}s cubic-bezier(0.21,0.47,0.32,0.98), transform 0.7s ${delay}s cubic-bezier(0.21,0.47,0.32,0.98)`
+          : 'none',
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
